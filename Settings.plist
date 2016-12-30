@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Key</key>
+		<string>millecode</string>
+		<key>Password</key>
+		<false/>
+		<key>Secure</key>
+		<true/>
+		<key>Title</key>
+		<string>Millecode</string>
+		<key>Type</key>
+		<string>TextField</string>
+	</dict>
+	<dict>
+		<key>Key</key>
+		<string>documentNumber</string>
+		<key>Password</key>
+		<true/>
+		<key>Secure</key>
+		<true/>
+		<key>Title</key>
+		<string>Document Number</string>
+		<key>Type</key>
+		<string>TextField</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<string>Passport</string>
+		<key>Key</key>
+		<string>doctype</string>
+		<key>Title</key>
+		<string>Document Type</string>
+		<key>Titles</key>
+		<array>
+			<string>Passport</string>
+			<string>Pesel</string>
+			<string>PId</string>
+		</array>
+		<key>Type</key>
+		<string>ListBox</string>
+		<key>Values</key>
+		<array>
+			<string>Passport</string>
+			<string>Pesel</string>
+			<string>Pid</string>
+		</array>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<string>false</string>
+		<key>Key</key>
+		<string>autologin</string>
+		<key>Title</key>
+		<string>Log in automatically</string>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<string>false</string>
+		<key>Key</key>
+		<string>usePassword</string>
+		<key>Title</key>
+		<string>Set P@ssword 1 with extention</string>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
+	<dict>
+		<key>Key</key>
+		<string>password</string>
+		<key>Password</key>
+		<true/>
+		<key>Secure</key>
+		<true/>
+		<key>Title</key>
+		<string>P@ssword 1</string>
+		<key>Type</key>
+		<string>TextField</string>
+	</dict>
+</array>
+</plist>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Getting settings</title>
+</head>
+<body>
+<script>
+const optionKeys = ['millecode', 'documentNumber', 'doctype', 'password'];
+const handleMessage = (msg) => {
+    if (msg.name === 'getSettings') {
+        let settings = {};
+        for (let i = 0; i < optionKeys.length; i++ ) {
+            settings[optionKeys[i]] = safari.extension.settings[optionKeys[i]] 
+            ? safari.extension.settings[optionKeys[i]] 
+            : safari.extension.secureSettings[optionKeys[i]];
+        }
+        msg.target.page.dispatchMessage('settings', settings);
+    }
+}
+safari.application.addEventListener('message', handleMessage, false);
+
+if (safari.extension.settings.millecode !== 'undefined') {
+    var newTab = safari.application.activeBrowserWindow.openTab();
+    newTab.url = safari.extension.baseURI + 'requestUserInput.html';
+}
+</script>
+</body>
+</html>
