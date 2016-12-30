@@ -6,23 +6,33 @@
 <body>
 <script>
 const optionKeys = ['millecode', 'documentNumber', 'doctype', 'password'];
+
+function getSettings () {
+    let settings = {};
+    for (let i = 0; i < optionKeys.length; i++ ) {
+        settings[optionKeys[i]] = safari.extension.settings[optionKeys[i]] 
+        ? safari.extension.settings[optionKeys[i]] 
+        : safari.extension.secureSettings[optionKeys[i]];
+    }
+    return settings
+}
+
 const handleMessage = (msg) => {
     if (msg.name === 'getSettings') {
-        let settings = {};
-        for (let i = 0; i < optionKeys.length; i++ ) {
-            settings[optionKeys[i]] = safari.extension.settings[optionKeys[i]] 
-            ? safari.extension.settings[optionKeys[i]] 
-            : safari.extension.secureSettings[optionKeys[i]];
-        }
-        msg.target.page.dispatchMessage('settings', settings);
+        msg.target.page.dispatchMessage('settings', getSettings());
     }
 }
-safari.application.addEventListener('message', handleMessage, false);
 
-if (safari.extension.settings.millecode !== 'undefined') {
-    var newTab = safari.application.activeBrowserWindow.openTab();
-    newTab.url = safari.extension.baseURI + 'requestUserInput.html';
+const settingsChanged = (event) => {
+    if (optionKeys.indexOf(event.key) > -1) {
+        safari.application.activeBrowserWindow.activeTab.page.dispatchMessage("settings", getSettings());
+    }
 }
+
+safari.application.addEventListener('message', handleMessage, false);
+safari.extension.settings.addEventListener("change", settingsChanged, false);
+safari.extension.secureSettings.addEventListener("change", settingsChanged, false);
+
 </script>
 </body>
 </html>

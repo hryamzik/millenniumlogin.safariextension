@@ -36,45 +36,52 @@ const setValues = (settings) => {
             el = document.getElementById('BtnLogin');
             fireEventOnElement(el, 'click');
         } else {
-            el = document.getElementById('ctl00_Content_Login_PasswordOne_txtContent');
-            el.value = password;
-
+            if (password !== undefined && password !== null && password !== "") {
+                el = document.getElementById('ctl00_Content_Login_PasswordOne_txtContent');
+                el.value = password;
+            }
+            
             el = document.getElementById('Content_Login_SecurityDigits_DocumentTypes_ddlList');
             el.focus();
-            waitChangesOnElement(el, 'change', () => {
-                let array = document.querySelectorAll('input[type=password]');
-                for (let i = 0; i < array.length; i++) {
-                    if ((array[i].name.indexOf('ctl00$Content$Login$SecurityDigits$Password$'+doctype+'_Container$'+doctype+'_') === 0) && !array[i].disabled) {
-                        let index = Object.assign([], array[i].name.replace('ctl00$Content$Login$SecurityDigits$Password$'+doctype+'_Container$'+doctype+'_',''))[0];
-                        index = parseInt(index);
-                        array[i].value = documentNumber[index];
+            if (documentNumber !== undefined && documentNumber !== null && documentNumber !== "")
+            {
+                waitChangesOnElement(el, 'change', () => {
+                    let array = document.querySelectorAll('input[type=password]');
+                    for (let i = 0; i < array.length; i++) {
+                        if ((array[i].name.indexOf('ctl00$Content$Login$SecurityDigits$Password$'+doctype+'_Container$'+doctype+'_') === 0) && !array[i].disabled) {
+                            let index = Object.assign([], array[i].name.replace('ctl00$Content$Login$SecurityDigits$Password$'+doctype+'_Container$'+doctype+'_',''))[0];
+                            index = parseInt(index);
+                            array[i].value = documentNumber[index];
+                        }
                     }
-                }
-                if (settings.autologin) {
-                    sleep(500).then(() => {
-                        el = document.getElementById('BtnLogin');
-                        fireEventOnElement(el, 'click');
-                    });
-                }
-            });
+                    if (settings.autologin) {
+                        sleep(500).then(() => {
+                            el = document.getElementById('BtnLogin');
+                            fireEventOnElement(el, 'click');
+                        });
+                    }
+                });
+            }
             el.value = doctype;
             fireEventOnElement(el, 'change');
         }
-    } else if (window.location.pathname.indexOf('individuals') === 1
-        || window.location.pathname.indexOf('klienci-indywidualni') === 1) {
+    }
+    
+    if (document.getElementById('millekod') && document.getElementById('millekod').type === "text") {
         let el = document.getElementById('millekod');
-        el.value = millecode;
-
-        el = document.querySelector('#_mainmenuportlet_WAR_mainmenuportlet_INSTANCE_mainmenu_bm-login-form button[type=submit]');
-        fireEventOnElement(el, 'click');
-    } else {
-        console.log('Wrong page: ' + window.location.pathname);
+        if (millecode !== undefined && millecode !== null && millecode !== "") {
+            el.value = millecode;
+        
+            if (settings.autologin) {
+                el = document.querySelector('#_mainmenuportlet_WAR_mainmenuportlet_INSTANCE_mainmenu_bm-login-form button[type=submit]');
+                fireEventOnElement(el, 'click');
+            }
+        }
     }
 };
 
 document.onreadystatechange = () => {
     if (document.readyState === 'complete') {
-        console.log('onreadystatechange: ' + document.readyState);
         safari.self.addEventListener('message', getMessage, false);
         safari.self.tab.dispatchMessage('getSettings');
     }
