@@ -45,7 +45,7 @@
 		<array>
 			<string>Passport</string>
 			<string>Pesel</string>
-			<string>Pid</string>
+			<string>PId</string>
 		</array>
 	</dict>
 	<dict>

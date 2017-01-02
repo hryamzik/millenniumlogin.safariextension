@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Builder Version</key>
-	<string>11602.3.12.0.1</string>
+	<string>12602.3.12.0.1</string>
 	<key>CFBundleDisplayName</key>
 	<string>Millennium Login</string>
 	<key>CFBundleIdentifier</key>
@@ -31,6 +31,8 @@
 			</array>
 		</dict>
 	</dict>
+	<key>Description</key>
+	<string>Millennium Login Action</string>
 	<key>DeveloperIdentifier</key>
 	<string>0000000000</string>
 	<key>ExtensionInfoDictionaryVersion</key>
