@@ -36,8 +36,8 @@ const setValues = (settings) => {
     const millecode      = settings.millecode;
     const doctype        = settings.doctype;
     const password       = settings.password;
-    const autoLogin      = settings.autologin;
-    const usePassword    = settings.usePassword;
+    const autoLogin      = (settings.autologin && settings.autologin != "false");
+    const usePassword    = (settings.usePassword && settings.usePassword != "false");
     const documentNumber = Object.assign([], settings.documentNumber);
     let el;
 
@@ -48,8 +48,7 @@ const setValues = (settings) => {
     }
 
     if (!validData) {
-        console.warn('Millennium Login : Please3 provide full personal data for extension');
-
+        console.warn('Millennium Login : Please provide full personal data for extension');
         return;
     }
 
@@ -58,7 +57,7 @@ const setValues = (settings) => {
         el = document.getElementById('ctl00_Content_Login_Multicode_txtContent');
     }
 
-    if (el && el.tagName === 'input') {
+    if (el && el.tagName === 'INPUT') {
         el.value = millecode;
 
         if (autoLogin) {
@@ -69,12 +68,12 @@ const setValues = (settings) => {
     }
 
     if (window.location.pathname.indexOf('osobiste2/LoginSignIn') === 1) {
-        el = document.getElementById('ctl00_Content_Login_PasswordOne_txtContent');
-        el.value = password;
-
-        el = document.getElementById('Content_Login_SecurityDigits_DocumentTypes_ddlList');
+        if (usePassword) {
+            el = document.getElementById('ctl00_Content_Login_PasswordOne_txtContent');
+            el.value = password;    
+        }
+        el = document.getElementById('Password');
         el.focus();
-
         waitChangesOnElement(el, 'change', () => {
             let array = document.querySelectorAll('input[type=password]');
             for (let i = 0; i < array.length; i++) {
@@ -85,7 +84,7 @@ const setValues = (settings) => {
                 }
             }
             if (autoLogin) {
-                login();
+                // login();
             }
         });
 

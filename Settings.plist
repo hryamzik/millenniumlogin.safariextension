@@ -61,10 +61,14 @@
 	<dict>
 		<key>DefaultValue</key>
 		<string>false</string>
+		<key>FalseValue</key>
+		<string>false</string>
 		<key>Key</key>
 		<string>usePassword</string>
 		<key>Title</key>
 		<string>Set P@ssword 1 with extention</string>
+		<key>TrueValue</key>
+		<string>true</string>
 		<key>Type</key>
 		<string>CheckBox</string>
 	</dict>
