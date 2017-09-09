@@ -2,8 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Author</key>
+	<string>Roman Belyakovsky</string>
 	<key>Builder Version</key>
-	<string>12603.3.8</string>
+	<string>11603.2.5</string>
 	<key>CFBundleDisplayName</key>
 	<string>Millennium Login</string>
 	<key>CFBundleIdentifier</key>
@@ -11,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.1.0</string>
+	<string>0.1.2</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>Chrome</key>
@@ -32,7 +34,7 @@
 		</dict>
 	</dict>
 	<key>Description</key>
-	<string>Millennium Login Action</string>
+	<string>Set millecode and document number in settings and get these fields filled in automatically</string>
 	<key>DeveloperIdentifier</key>
 	<string>0000000000</string>
 	<key>ExtensionInfoDictionaryVersion</key>
@@ -53,6 +55,6 @@
 		</dict>
 	</dict>
 	<key>Website</key>
-	<string>https://bankmillennium.pl</string>
+	<string>https://github.com/hryamzik/millenniumlogin.safariextension</string>
 </dict>
 </plist>
